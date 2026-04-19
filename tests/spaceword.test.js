@@ -56,3 +56,40 @@ test("circleIntersect same position returns true", () => {
 test("timeToString(0) returns 00:00:00", () => {
   expect(timeToString(0)).toBe("00:00:00");
 });
+
+const fs = require("fs");
+const path = require("path");
+const { JSDOM } = require("jsdom");
+
+describe("SpaceWord functional tests", () => {
+  let html;
+  let dom;
+  let document;
+
+  beforeAll(() => {
+    const htmlPath = path.join(__dirname, "../index.html");
+    html = fs.readFileSync(htmlPath, "utf8");
+    dom = new JSDOM(html);
+    document = dom.window.document;
+  });
+
+  test("index.html should exist and not be empty", () => {
+    expect(html).toBeTruthy();
+    expect(html.length).toBeGreaterThan(0);
+  });
+
+  test("page should contain a canvas element", () => {
+    const canvas = document.querySelector("canvas");
+    expect(canvas).not.toBeNull();
+  });
+
+  test("page should load script.js", () => {
+    const scripts = [...document.querySelectorAll("script")];
+    const hasScript = scripts.some((script) => {
+      const src = script.getAttribute("src");
+      return src && src.includes("script.js");
+    });
+
+    expect(hasScript).toBe(true);
+  });
+});

@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "jest",
-      "lint": "eslint ."
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -26,6 +26,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.2.0",
     "globals": "^17.5.0",
-    "jest": "^30.3.0"
+    "jest": "^30.3.0",
+    "jsdom": "^29.0.2"
   }
 }
